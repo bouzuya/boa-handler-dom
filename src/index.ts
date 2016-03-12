@@ -27,6 +27,7 @@ const init = (domOptions: DOMOptions): DOMResponse => {
         dom.renderToDOM(vtree);
         return; // return undefined
       })
+      .filter(a => !!a) // remove undefined
       .share();
   };
   return { handler };
