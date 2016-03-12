@@ -2,6 +2,12 @@
 
 A [b-o-a][bouzuya/b-o-a] handler for rendering to DOM.
 
+## Installation
+
+```
+$ npm install boajs-handler-dom
+```
+
 ## Badges
 
 [![Circle CI][circleci-badge-url]][circleci-url]
