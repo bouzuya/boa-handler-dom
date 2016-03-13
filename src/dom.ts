@@ -1,20 +1,17 @@
-import { diff, patch, VTree, RTree } from './view';
-import * as parse from 'vdom-parser';
+import { DOM as DOM2, VDOM } from 'boajs-vdom';
+
+const { init } = DOM2;
 
 class DOM {
-  private rtree: RTree;
-  private vtree: VTree;
+  private render: DOM2.Render;
 
   constructor(rootSelector: string) {
-    this.rtree = document.querySelector(rootSelector);
-    this.vtree = parse(this.rtree);
+    const root = document.querySelector(rootSelector);
+    this.render = init({ root });
   }
 
-  renderToDOM(vtree: VTree): void {
-    const current = this.vtree;
-    const next = vtree;
-    this.rtree = patch(this.rtree, diff(current, next));
-    this.vtree = next;
+  renderToDOM(vtree: VDOM): void {
+    this.render = this.render(vtree).render;
   }
 }
 
