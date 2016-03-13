@@ -1,7 +1,7 @@
 {
   "name": "boajs-handler-dom",
   "description": "A b-o-a handler for rendering to DOM",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "author": {
     "name": "bouzuya",
     "email": "m@bouzuya.net",
