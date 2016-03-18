@@ -2,6 +2,7 @@
 
 import { A, O, Handler } from 'b-o-a';
 import { DOM } from './dom';
+import { create } from 'boajs-vdom';
 
 type DOMOptions = {
   root: string;
@@ -23,7 +24,7 @@ const init = (domOptions: DOMOptions): DOMResponse => {
       .map(action => {
         if (action.type !== type) return action;
         const state: any = action.data;
-        const vtree = render(state, { e: re });
+        const vtree = render(state, { create, e: re });
         dom.renderToDOM(vtree);
         return; // return undefined
       })
