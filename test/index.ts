@@ -3,7 +3,7 @@ var global = Function('return this')();
 global.DOMParser = () => null;
 
 import test from 'ava';
-import { O } from 'b-o-a';
+import { O } from 'boa-core';
 import { init as initType } from '../src/';
 import { DOM as DOMType } from '../src/dom';
 import * as sinon from 'sinon';

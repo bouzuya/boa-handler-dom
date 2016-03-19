@@ -1,4 +1,4 @@
-import { DOM as DOM2, VDOM } from 'boajs-vdom';
+import { DOM as DOM2, VDOM } from 'boa-vdom';
 
 const { init } = DOM2;
 

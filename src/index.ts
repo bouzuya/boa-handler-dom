@@ -1,8 +1,8 @@
 // RenderAction -> render -> render to DOM
 
-import { A, O, Handler } from 'b-o-a';
+import { A, O, Handler } from 'boa-core';
 import { DOM } from './dom';
-import { create } from 'boajs-vdom';
+import { create } from 'boa-vdom';
 
 type DOMOptions = {
   root: string;
