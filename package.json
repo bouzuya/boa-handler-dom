@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "boa-core": "0.6.1",
-    "boajs-vdom": "^0.1.1"
+    "boa-vdom": "0.2.0"
   },
   "devDependencies": {
     "ava": "0.13.0",
