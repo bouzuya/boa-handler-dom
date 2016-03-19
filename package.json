@@ -1,5 +1,5 @@
 {
-  "name": "boajs-handler-dom",
+  "name": "boa-handler-dom",
   "description": "A b-o-a handler for rendering to DOM",
   "version": "0.3.0",
   "author": {
@@ -16,7 +16,7 @@
     ]
   },
   "bugs": {
-    "url": "https://github.com/bouzuya/boajs-handler-dom/issues"
+    "url": "https://github.com/bouzuya/boa-handler-dom/issues"
   },
   "dependencies": {
     "boa-core": "0.6.1",
@@ -34,13 +34,13 @@
   "files": [
     "lib"
   ],
-  "homepage": "https://github.com/bouzuya/boajs-handler-dom#readme",
+  "homepage": "https://github.com/bouzuya/boa-handler-dom#readme",
   "keywords": [],
   "license": "MIT",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bouzuya/boajs-handler-dom"
+    "url": "https://github.com/bouzuya/boa-handler-dom"
   },
   "scripts": {
     "build": "tsc && npm run cp",
