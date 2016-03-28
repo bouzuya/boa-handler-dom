@@ -2,11 +2,11 @@
 
 import { A, O, Handler } from 'boa-core';
 import { DOM } from './dom';
-import { create } from 'boa-vdom';
+import { create, VDOM } from 'boa-vdom';
 
 type DOMOptions = {
   root: string;
-  render: (state: any, options: any) => any;
+  render: (state: any, options: any) => VDOM;
   renderActionType?: string;
 };
 
