@@ -19,7 +19,7 @@
     "url": "https://github.com/bouzuya/boa-handler-dom/issues"
   },
   "dependencies": {
-    "boa-core": "0.6.3",
+    "boa-core": "0.6.4",
     "boa-vdom": "0.2.0"
   },
   "devDependencies": {
