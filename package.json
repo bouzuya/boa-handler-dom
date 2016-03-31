@@ -1,7 +1,7 @@
 {
   "name": "boa-handler-dom",
   "description": "A b-o-a handler for rendering to DOM",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "author": {
     "name": "bouzuya",
     "email": "m@bouzuya.net",
