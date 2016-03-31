@@ -3,7 +3,7 @@ var global = Function('return this')();
 global.DOMParser = () => null;
 
 import test from 'ava';
-import { O } from 'boa-core';
+import { A, O } from 'boa-core';
 import { init as initType } from '../src/';
 import { DOM as DOMType } from '../src/dom';
 import * as sinon from 'sinon';
@@ -25,7 +25,7 @@ test(t => {
   const DOM: typeof DOMType = t.context.DOM;
   const render: (s: any, o: any) => any = t.context.render;
   const root = 'div#app';
-  const action$ = O.empty();
+  const action$ = O.empty<A<any>>();
   const options = { re: () => null };
   init({ render, root }).handler(action$, options);
   t.ok((<sinon.SinonStub>t.context.DOM).callCount === 1);
