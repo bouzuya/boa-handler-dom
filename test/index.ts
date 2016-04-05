@@ -1,20 +1,18 @@
-// FIXME: workaround for vdom-parser
-var global = Function('return this')();
-global.DOMParser = () => null;
-
 import test from 'ava';
+import * as proxyquire from 'proxyquire';
+import * as sinon from 'sinon';
 import { A, O } from 'boa-core';
 import { init as initType } from '../src/';
 import { DOM as DOMType } from '../src/dom';
-import * as sinon from 'sinon';
-import * as proxyquire from 'proxyquire';
 
 test.beforeEach(t => {
   const sandbox = sinon.sandbox.create();
   const render = sandbox.stub();
   const DOM = sandbox.stub();
+  DOM.prototype = { renderToDOM: sandbox.stub() };
   t.context.render = render;
   t.context.DOM = DOM;
+  t.context.renderToDOM = DOM.prototype.renderToDOM;
   t.context.init = proxyquire('../src/', {
     './dom': { DOM }
   }).init;
@@ -22,12 +20,56 @@ test.beforeEach(t => {
 
 test(t => {
   const init: typeof initType = t.context.init;
-  const DOM: typeof DOMType = t.context.DOM;
-  const render: (s: any, o: any) => any = t.context.render;
+  const DOM: sinon.SinonStub = t.context.DOM;
+  const renderToDOM: sinon.SinonStub = t.context.renderToDOM;
+  const render: sinon.SinonStub = t.context.render;
   const root = 'div#app';
-  const action$ = O.empty<A<any>>();
+  const state = { foo: 'bar' };
+  const vtree = { bar: 'baz' };
+  const action$ = O.of<A<any>>({
+    type: 'render', data: state
+  });
   const options = { re: () => null };
-  init({ render, root }).handler(action$, options);
-  t.ok((<sinon.SinonStub>t.context.DOM).callCount === 1);
-  t.same((<sinon.SinonStub>t.context.DOM).getCall(0).args, <any[]>[root]);
+  render.returns(vtree);
+  renderToDOM.returns(null);
+  init({ render, root }).handler(action$, options).subscribe(() => {
+    t.fail();
+  });
+  // const dom = new DOM(root);
+  t.ok(DOM.callCount === 1);
+  t.same(DOM.getCall(0).args, <any[]>[root]);
+  // const vtree = render(state, { create, e: re });
+  t.ok(render.callCount === 1);
+  t.same(render.getCall(0).args[0], state);
+  t.ok(render.getCall(0).args[1].create);
+  t.ok(render.getCall(0).args[1].e);
+  // dom.renderToDOM(vtree);
+  t.ok(renderToDOM.callCount === 1);
+  t.same(renderToDOM.getCall(0).args[0], vtree);
+});
+
+test(t => {
+  const init: typeof initType = t.context.init;
+  const DOM: sinon.SinonStub = t.context.DOM;
+  const renderToDOM: sinon.SinonStub = t.context.renderToDOM;
+  const render: sinon.SinonStub = t.context.render;
+  const root = 'div#app';
+  const state = { foo: 'bar' };
+  const vtree = { bar: 'baz' };
+  const action$ = O.of<A<any>>({
+    type: 'notRender', data: state
+  });
+  const options = { re: () => null };
+  render.returns(vtree);
+  renderToDOM.returns(null);
+  init({ render, root }).handler(action$, options).subscribe(() => {
+    t.fail();
+  });
+  // const dom = new DOM(root);
+  t.ok(DOM.callCount === 1);
+  t.same(DOM.getCall(0).args, <any[]>[root]);
+  // const vtree = render(state, { create, e: re });
+  t.ok(render.callCount === 0);
+  // dom.renderToDOM(vtree);
+  t.ok(renderToDOM.callCount === 0);
 });
