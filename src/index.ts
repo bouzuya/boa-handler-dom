@@ -21,14 +21,13 @@ const init = (domOptions: DOMOptions): DOMResponse => {
     const dom = new DOM(root);
     const { re } = options;
     return action$
-      .map(action => {
-        if (action.type !== type) return action;
-        const state: any = action.data;
+      .filter(action => action.type === type)
+      .map(({ data }) => data)
+      .do(state => {
         const vtree = render(state, { create, e: re });
         dom.renderToDOM(vtree);
-        return; // return undefined
       })
-      .filter(a => !!a) // remove undefined
+      .filter(() => false) // remove all
       .share();
   };
   return { handler };
