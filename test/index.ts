@@ -36,16 +36,16 @@ test(t => {
     t.fail();
   });
   // const dom = new DOM(root);
-  t.ok(DOM.callCount === 1);
-  t.same(DOM.getCall(0).args, <any[]>[root]);
+  t.truthy(DOM.callCount === 1);
+  t.deepEqual(DOM.getCall(0).args, <any[]>[root]);
   // const vtree = render(state, { create, e: re });
-  t.ok(render.callCount === 1);
-  t.same(render.getCall(0).args[0], state);
-  t.ok(render.getCall(0).args[1].create);
-  t.ok(render.getCall(0).args[1].e);
+  t.truthy(render.callCount === 1);
+  t.deepEqual(render.getCall(0).args[0], state);
+  t.truthy(render.getCall(0).args[1].create);
+  t.truthy(render.getCall(0).args[1].e);
   // dom.renderToDOM(vtree);
-  t.ok(renderToDOM.callCount === 1);
-  t.same(renderToDOM.getCall(0).args[0], vtree);
+  t.truthy(renderToDOM.callCount === 1);
+  t.deepEqual(renderToDOM.getCall(0).args[0], vtree);
 });
 
 test(t => {
@@ -66,10 +66,10 @@ test(t => {
     t.fail();
   });
   // const dom = new DOM(root);
-  t.ok(DOM.callCount === 1);
-  t.same(DOM.getCall(0).args, <any[]>[root]);
+  t.truthy(DOM.callCount === 1);
+  t.deepEqual(DOM.getCall(0).args, <any[]>[root]);
   // const vtree = render(state, { create, e: re });
-  t.ok(render.callCount === 0);
+  t.truthy(render.callCount === 0);
   // dom.renderToDOM(vtree);
-  t.ok(renderToDOM.callCount === 0);
+  t.truthy(renderToDOM.callCount === 0);
 });
