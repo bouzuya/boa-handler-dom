@@ -15,7 +15,7 @@ export interface DOMResponse {
 }
 
 const init = (domOptions: DOMOptions): DOMResponse => {
-  const handler = (action$, options) => {
+  const handler: Handler = (action$, options) => {
     const { root, render, renderActionType } = domOptions;
     const type = renderActionType ? renderActionType : 'render';
     const dom = new DOM(root);

@@ -29,7 +29,7 @@ test(t => {
   const action$ = O.of<A<any>>({
     type: 'render', data: state
   });
-  const options = { re: () => null };
+  const options = { re: (): any => null };
   render.returns(vtree);
   renderToDOM.returns(null);
   init({ render, root }).handler(action$, options).subscribe(() => {
@@ -59,7 +59,7 @@ test(t => {
   const action$ = O.of<A<any>>({
     type: 'notRender', data: state
   });
-  const options = { re: () => null };
+  const options = { re: (): any => null };
   render.returns(vtree);
   renderToDOM.returns(null);
   init({ render, root }).handler(action$, options).subscribe(() => {
