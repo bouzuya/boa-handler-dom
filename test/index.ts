@@ -4,6 +4,7 @@ import * as sinon from 'sinon';
 import { A, O } from 'boa-core';
 import { init as initType } from '../src/';
 import { DOM as DOMType } from '../src/dom';
+import 'rxjs/add/observable/of';
 
 test.beforeEach(t => {
   const sandbox = sinon.sandbox.create();
@@ -29,7 +30,7 @@ test(t => {
   const action$ = O.of<A<any>>({
     type: 'render', data: state
   });
-  const options = { re: () => null };
+  const options = { re: (): any => null };
   render.returns(vtree);
   renderToDOM.returns(null);
   init({ render, root }).handler(action$, options).subscribe(() => {
@@ -59,7 +60,7 @@ test(t => {
   const action$ = O.of<A<any>>({
     type: 'notRender', data: state
   });
-  const options = { re: () => null };
+  const options = { re: (): any => null };
   render.returns(vtree);
   renderToDOM.returns(null);
   init({ render, root }).handler(action$, options).subscribe(() => {
